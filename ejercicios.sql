@@ -65,6 +65,24 @@ INSERT INTO colores VALUES ('Rojo'), ('Azul'), ('Verde');
 INSERT INTO tamaños VALUES ('Pequeño'), ('Mediano'), ('Grande');
 
 
-SELECT *
+SELECT colores.color, tamaños.tamaño
 FROM colores
 CROSS JOIN tamaños;
+
+--------------------------------------------------------
+Ejercicio 1:
+Tienes dos tablas: empleados (con columnas id_empleado, nombre_empleado) y turnos (con columnas id_turno, turno). Realiza un CROSS JOIN para mostrar todas las combinaciones posibles de empleados y turnos.
+CREATE TABLE empleados (id_empleado SERIAL PRIMARY KEY, nombre_empleado VARCHAR(50));
+INSERT INTO empleados (nombre_empleado) VALUES ('Ana'), ('Luis'), ('María');
+
+CREATE TABLE turnos (id_turno SERIAL PRIMARY KEY, turno VARCHAR(50));
+INSERT INTO turnos (turno) VALUES ('Mañana'), ('Tarde'), ('Noche')
+
+Ejercicio 2:
+Dadas las tablas productos (con columnas id_producto, nombre_producto) y precios (con columnas id_precio, precio). Usa un CROSS JOIN para generar una lista que combine todos los productos con todos los precios disponibles.
+
+CREATE TABLE productos (id_producto SERIAL PRIMARY KEY, nombre_producto VARCHAR(50));
+INSERT INTO productos (nombre_producto) VALUES ('Camiseta'), ('Pantalón'), ('Zapatos');
+
+CREATE TABLE precios (id_precio SERIAL PRIMARY KEY, precio NUMERIC(10, 2));
+INSERT INTO precios (precio) VALUES (19.99), (29.99), (49.99);
