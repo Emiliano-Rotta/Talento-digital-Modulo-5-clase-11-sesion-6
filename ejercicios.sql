@@ -94,3 +94,72 @@ INSERT INTO precios (precio) VALUES (19.99), (29.99), (49.99);
 SELECT productos.nombre_producto, precios.precio
 FROM productos
 CROSS JOIN precios;
+
+----------------------------------
+No se puede asegurar el comportamiento por defecto, porque lo hace de la manera mas eficiente, pero puedo obligarlo a que se ordene de una determinada manera con un order by
+
+SELECT productos.nombre_producto, precios.precio
+FROM productos
+CROSS JOIN precios
+ORDER BY productos.nombre_producto, precios.precio;
+
+
+
+------------------------------------------------------------
+Ejercicios Grupales:
+
+crear una base de datos ejercicio_sesion_seis y agrega estas tablas. Luego hacer las peticiones.
+
+Tabla estudiantes:
+
+CREATE TABLE estudiantes (
+    id_estudiante SERIAL PRIMARY KEY,
+    nombre VARCHAR(50)
+);
+
+INSERT INTO estudiantes (nombre) VALUES
+('Juan'), ('María'), ('Luis'), ('Ana');
+
+Tabla cursos:
+
+CREATE TABLE cursos (
+    id_curso SERIAL PRIMARY KEY,
+    nombre_curso VARCHAR(50)
+);
+
+INSERT INTO cursos (nombre_curso) VALUES
+('Matemáticas'), ('Historia'), ('Ciencias'), ('Arte');
+
+Tabla inscripciones:
+
+CREATE TABLE inscripciones (
+    id_inscripcion SERIAL PRIMARY KEY,
+    id_estudiante INT REFERENCES estudiantes(id_estudiante),
+    id_curso INT REFERENCES cursos(id_curso)
+);
+
+INSERT INTO inscripciones (id_estudiante, id_curso) VALUES
+(1, 1), (2, 2), (3, 3), (4, 1), (2, 3);
+
+
+
+Ejercicio 1: LEFT JOIN
+Realiza un LEFT JOIN para mostrar todos los estudiantes y los cursos en los que están inscritos. Si un estudiante no está inscrito en ningún curso, muestra NULL en la columna del curso.
+
+Ejercicio 2: RIGHT JOIN
+Utiliza un RIGHT JOIN para listar todos los cursos junto con los estudiantes inscritos en ellos. Si un curso no tiene estudiantes, muestra NULL en las columnas del estudiante.
+
+Ejercicio 3: FULL JOIN
+Realiza un FULL JOIN para mostrar todos los estudiantes y los cursos, incluidos aquellos estudiantes sin cursos inscritos y cursos sin estudiantes.
+
+Ejercicio 4: INNER JOIN
+Usa un INNER JOIN para listar solo los estudiantes que están inscritos en algún curso, mostrando el nombre del estudiante y el nombre del curso.
+
+Ejercicio 5: CROSS JOIN 
+Realiza un CROSS JOIN para mostrar todas las combinaciones posibles de estudiantes y cursos, independientemente de si están inscritos o no.
+
+Ejercicio 6: CROSS JOIN 
+Usa un CROSS JOIN para generar una lista de todas las combinaciones posibles de estudiantes y cursos. Filtra los resultados para mostrar solo aquellos estudiantes que no están inscritos en los cursos.
+NOT IN (SELECT id_estudiante, id_curso FROM inscripciones);
+
+
