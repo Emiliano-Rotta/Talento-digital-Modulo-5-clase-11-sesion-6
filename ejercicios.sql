@@ -76,7 +76,11 @@ CREATE TABLE empleados (id_empleado SERIAL PRIMARY KEY, nombre_empleado VARCHAR(
 INSERT INTO empleados (nombre_empleado) VALUES ('Ana'), ('Luis'), ('María');
 
 CREATE TABLE turnos (id_turno SERIAL PRIMARY KEY, turno VARCHAR(50));
-INSERT INTO turnos (turno) VALUES ('Mañana'), ('Tarde'), ('Noche')
+INSERT INTO turnos (turno) VALUES ('Mañana'), ('Tarde'), ('Noche');
+
+SELECT empleados.nombre_empleado, turnos.turno
+FROM empleados
+CROSS JOIN turnos;
 
 Ejercicio 2:
 Dadas las tablas productos (con columnas id_producto, nombre_producto) y precios (con columnas id_precio, precio). Usa un CROSS JOIN para generar una lista que combine todos los productos con todos los precios disponibles.
@@ -86,3 +90,7 @@ INSERT INTO productos (nombre_producto) VALUES ('Camiseta'), ('Pantalón'), ('Za
 
 CREATE TABLE precios (id_precio SERIAL PRIMARY KEY, precio NUMERIC(10, 2));
 INSERT INTO precios (precio) VALUES (19.99), (29.99), (49.99);
+
+SELECT productos.nombre_producto, precios.precio
+FROM productos
+CROSS JOIN precios;
