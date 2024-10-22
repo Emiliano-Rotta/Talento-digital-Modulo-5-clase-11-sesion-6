@@ -146,20 +146,49 @@ INSERT INTO inscripciones (id_estudiante, id_curso) VALUES
 Ejercicio 1: LEFT JOIN
 Realiza un LEFT JOIN para mostrar todos los estudiantes y los cursos en los que están inscritos. Si un estudiante no está inscrito en ningún curso, muestra NULL en la columna del curso.
 
+SELECT estudiantes.nombre, cursos.nombre_curso 
+FROM estudiantes
+LEFT JOIN inscripciones ON estudiantes.id_estudiantes = inscripciones.id_estudiante
+LEFT JOIN cursos ON inscripciones.id_curso = cursos.id_curso;
+
 Ejercicio 2: RIGHT JOIN
 Utiliza un RIGHT JOIN para listar todos los cursos junto con los estudiantes inscritos en ellos. Si un curso no tiene estudiantes, muestra NULL en las columnas del estudiante.
+
+SELECT estudiantes.nombre, cursos.nombre_curso
+FROM estudiantes
+RIGHT JOIN inscripciones ON estudiantes.id_estudiante = inscripciones.id_estudiante
+RIGHT JOIN cursos ON inscripciones.id_curso = cursos.id_curso;
+
 
 Ejercicio 3: FULL JOIN
 Realiza un FULL JOIN para mostrar todos los estudiantes y los cursos, incluidos aquellos estudiantes sin cursos inscritos y cursos sin estudiantes.
 
+SELECT estudiantes.nombre, cursos.nombre_curso
+FROM estudiantes
+FULL JOIN inscripciones ON estudiantes.id_estudiante = inscripciones.id_estudiante
+FULL JOIN cursos ON inscripciones.id_curso = cursos.id_curso;
+
 Ejercicio 4: INNER JOIN
 Usa un INNER JOIN para listar solo los estudiantes que están inscritos en algún curso, mostrando el nombre del estudiante y el nombre del curso.
 
+SELECT estudiantes.nombre, cursos.nombre_curso
+FROM estudiantes
+INNER JOIN inscripciones ON estudiantes.id_estudiante = inscripciones.id_estudiante
+INNER JOIN cursos ON inscripciones.id_curso = cursos.id_curso;
+
 Ejercicio 5: CROSS JOIN 
 Realiza un CROSS JOIN para mostrar todas las combinaciones posibles de estudiantes y cursos, independientemente de si están inscritos o no.
+
+SELECT estudiantes.nombre, cursos.nombre_curso
+FROM estudiantes
+CROSS JOIN cursos;
 
 Ejercicio 6: CROSS JOIN 
 Usa un CROSS JOIN para generar una lista de todas las combinaciones posibles de estudiantes y cursos. Filtra los resultados para mostrar solo aquellos estudiantes que no están inscritos en los cursos.
 NOT IN (SELECT id_estudiante, id_curso FROM inscripciones);
 
+SELECT estudiantes.nombre, cursos.nombre_curso
+FROM estudiantes
+CROSS JOIN cursos;
+WHERE (estudiantes.id_estudiante, cursos.id_curso) NOT IN (SELECT id_estudiante, id_curso FROM inscripciones);
 
